@@ -32,13 +32,13 @@ export default function OutletPage() {
           {/* Toggle Pill */}
           <div className="flex bg-white rounded-full border border-line/50 p-1 shadow-sm w-[200px]">
             <button
-              className={`flex-1 rounded-full py-1.5 text-[13px] font-bold transition-colors ${mode === "pickup" ? "bg-[#00623B] text-white" : "text-brown-muted hover:bg-secondary"}`}
+              className={`flex-1 rounded-full py-1.5 text-[13px] font-bold transition-colors ${mode === "pickup" ? "bg-brand text-white" : "text-brown-muted hover:bg-secondary"}`}
               onClick={() => setMode("pickup")}
             >
               Pickup
             </button>
             <button
-              className={`flex-1 rounded-full py-1.5 text-[13px] font-bold transition-colors ${mode === "delivery" ? "bg-[#00623B] text-white" : "text-brown-muted hover:bg-secondary"}`}
+              className={`flex-1 rounded-full py-1.5 text-[13px] font-bold transition-colors ${mode === "delivery" ? "bg-brand text-white" : "text-brown-muted hover:bg-secondary"}`}
               onClick={() => setMode("delivery")}
             >
               Delivery
@@ -46,7 +46,7 @@ export default function OutletPage() {
           </div>
 
           {/* Skip */}
-          <button className="text-[14px] font-bold text-[#00623B] px-2" onClick={() => router.push("/home")}>
+          <button className="text-[14px] font-bold text-brand px-2" onClick={() => router.push("/home")}>
             Skip
           </button>
         </div>
@@ -69,8 +69,8 @@ export default function OutletPage() {
         {stores.map(store => (
           <div key={store.id} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer" style={{ left: `${store.lng}%`, top: `${store.lat}%` }} onClick={() => setSelectedStore(store.id)}>
              {selectedStore === store.id ? (
-                // Selected Pin (Green with white center)
-                <div className="w-6 h-6 bg-[#00623B] rounded-full border-2 border-white shadow-md flex items-center justify-center z-10 scale-125 transition-transform">
+                // Selected Pin (Orange with white center)
+                <div className="w-6 h-6 bg-brand rounded-full border-2 border-white shadow-md flex items-center justify-center z-10 scale-125 transition-transform">
                    <div className="w-2 h-2 bg-white rounded-full" />
                 </div>
              ) : (
@@ -97,7 +97,7 @@ export default function OutletPage() {
 
         {/* Filter Chip */}
         <div className="absolute right-4 bottom-6">
-            <button className="px-5 py-2.5 bg-white rounded-full shadow-md text-[14px] font-bold text-[#00623B] flex items-center gap-2">
+            <button className="px-5 py-2.5 bg-white rounded-full shadow-md text-[14px] font-bold text-brand flex items-center gap-2">
                Filter
             </button>
         </div>
@@ -111,7 +111,7 @@ export default function OutletPage() {
             return (
               <BlurFade key={store.id} delay={0.1 + i * 0.05} duration={0.4}>
                 <div 
-                  className={`border-b border-line/40 cursor-pointer transition-colors ${isSelected ? 'bg-secondary/40 border-[#00623B] border-x-2 border-y-0' : 'hover:bg-secondary/20'} px-6 py-5`}
+                  className={`border-b border-line/40 cursor-pointer transition-colors ${isSelected ? 'bg-secondary/40 border-brand border-x-2 border-y-0' : 'hover:bg-secondary/20'} px-6 py-5`}
                   onClick={() => setSelectedStore(store.id)}
                 >
                   <div className="flex justify-between items-start mb-2">
@@ -134,7 +134,7 @@ export default function OutletPage() {
                   {isSelected && (
                     <div className="mt-4 flex justify-end">
                       <button 
-                         className="bg-[#00623B] text-white font-bold text-[14px] px-6 py-2.5 rounded-full shadow-md hover:bg-[#004d2e] transition-colors flex items-center gap-2"
+                         className="bg-brand text-white font-bold text-[14px] px-6 py-2.5 rounded-full shadow-md hover:bg-brand-hover transition-colors flex items-center gap-2"
                          onClick={(e) => { e.stopPropagation(); router.push("/home"); }}
                       >
                          Order here

@@ -39,9 +39,9 @@ export default function HomePage() {
             <AvatarFallback className="bg-brand text-white font-display font-bold text-sm">V</AvatarFallback>
           </Avatar>
           <div>
-            <p className="text-[11px] font-bold text-brown-muted uppercase tracking-widest mb-0.5">Deliver to</p>
-            <Button variant="link" className="p-0 h-auto text-[14px] font-bold text-brown gap-1" onClick={() => router.push("/address")}>
-              Home, 4B Block
+            <p className="text-[11px] font-bold text-brown-muted uppercase tracking-widest mb-0.5">Pickup from</p>
+            <Button variant="link" className="p-0 h-auto text-[14px] font-bold text-brown gap-1" onClick={() => router.push("/outlet")}>
+              Select Store
               <svg width="14" height="14" viewBox="0 0 24 24" fill="#E8560A"><path d="M7 10l5 5 5-5z" /></svg>
             </Button>
           </div>
