@@ -26,7 +26,7 @@ export default function OnboardingPage() {
   return (
     <PhoneShell bg="bg-white">
       {/* Top Header */}
-      <div className="pt-16 pb-8 flex flex-col items-center z-10 bg-white relative">
+      <div className="pt-8 pb-8 flex flex-col items-center z-10 bg-white relative">
         <BlurFade delay={0.1} duration={0.5}>
           <div className="flex items-center justify-center mb-6">
             <img src="/logo.png" alt="Burger Farm" className="w-24 h-24 object-contain" />

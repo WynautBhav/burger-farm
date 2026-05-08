@@ -19,7 +19,7 @@ export default function PreferencesPage() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(232,86,10,0.08)_0%,transparent_60%)] z-0" />
 
       {/* Header Area */}
-      <div className="pt-16 pb-6 px-8 z-20 flex flex-col items-center relative">
+      <div className="pt-8 pb-6 px-8 z-20 flex flex-col items-center relative">
         <BlurFade delay={0.1} duration={0.5}>
           <div className="flex items-center justify-center mb-6">
             <img src="/logo.png" alt="Burger Farm" className="w-24 h-24 object-contain" />
