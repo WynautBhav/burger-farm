@@ -1,129 +1,177 @@
 "use client";
 
+import { useState } from "react";
 import { PhoneShell } from "@/components/layout/phone-shell";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
-
-const cravings = [
-  { emoji: "🍔", label: "Burgers", defaultChecked: true },
-  { emoji: "🍟", label: "Sides" },
-  { emoji: "🥤", label: "Drinks" },
-  { emoji: "🌶️", label: "Spicy" },
-  { emoji: "🥗", label: "Light" },
-];
+import { useRouter } from "next/navigation";
 
 export default function PreferencesPage() {
+  const router = useRouter();
+  const [name, setName] = useState("");
+  const [diet, setDiet] = useState<"veg" | "non-veg" | null>(null);
+
   return (
-    <PhoneShell bg="bg-white">
-      {/* Top Brand Area */}
-      <div className="relative h-[25%] bg-brand flex flex-col items-center justify-center pt-6 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15)_0%,transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(39,18,0,0.15)_0%,transparent_60%)]" />
+    <PhoneShell bg="bg-brand" className="overflow-hidden">
+      {/* Background gradients for depth */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.15)_0%,transparent_50%)] z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(39,18,0,0.15)_0%,transparent_60%)] z-0" />
+
+      {/* Header Area */}
+      <div className="pt-16 pb-6 px-8 z-20 flex flex-col items-center relative">
         <BlurFade delay={0.1} duration={0.5}>
-          <div className="relative z-10 flex flex-col items-center">
-            <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center mb-3 shadow-glow">
-              <svg width="22" height="22" viewBox="0 0 48 48" fill="none">
-                <rect x="12" y="26" width="24" height="8" rx="4" fill="#fff" opacity="0.95" />
-                <rect x="10" y="22" width="28" height="5" rx="2.5" fill="#fff" opacity="0.6" />
-                <rect x="13" y="19" width="22" height="4" rx="2" fill="#fff" opacity="0.85" />
-              </svg>
-            </div>
-            <Badge variant="outline" className="bg-white/10 text-white border-white/20 text-[10px] font-bold tracking-widest uppercase backdrop-blur-sm">
-              Almost Done
-            </Badge>
+          <div className="w-16 h-16 rounded-full bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg mb-4">
+            <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+              <rect x="12" y="26" width="24" height="8" rx="4" fill="#fff" opacity=".95" />
+              <rect x="10" y="22" width="28" height="5" rx="2.5" fill="rgba(255,255,255,0.7)" />
+              <rect x="13" y="19" width="22" height="4" rx="2" fill="#fff" opacity=".9" />
+              <rect x="11" y="16" width="26" height="4" rx="2" fill="rgba(255,255,255,0.5)" />
+            </svg>
           </div>
+        </BlurFade>
+
+        <BlurFade delay={0.2} duration={0.5}>
+          <h1 className="font-display font-black text-white text-[32px] tracking-tight leading-none mb-2 text-center drop-shadow-sm">
+            Farm. Fresh.<br />Delicious.
+          </h1>
+        </BlurFade>
+        
+        <BlurFade delay={0.3} duration={0.5}>
+          <p className="text-white/80 font-medium text-[15px] text-center">
+            Tell us a bit about you to get started.
+          </p>
         </BlurFade>
       </div>
 
-      {/* Form Card — shadcn Card */}
-      <Card className="flex-1 rounded-t-[40px] rounded-b-none border-0 shadow-float z-10 flex flex-col overflow-hidden relative -mt-4">
-        <CardContent className="flex-1 flex flex-col px-8 pt-8 pb-8 overflow-y-auto">
-          {/* Progress Bar — shadcn Progress */}
-          <BlurFade delay={0.2} duration={0.4}>
-            <Progress value={100} className="h-2 mb-2 [&>[data-slot=indicator]]:bg-brand" />
-            <p className="text-[10px] font-black text-brand uppercase tracking-[0.2em] mb-6">Step 3 of 3</p>
-          </BlurFade>
-
-          {/* Name Input — shadcn Label + Input */}
-          <BlurFade delay={0.3} duration={0.4}>
-            <div className="mb-7">
-              <Label className="text-[15px] font-semibold text-brown mb-3 block">What do we call you?</Label>
-              <div className="flex items-center gap-3 bg-secondary border-[1.5px] border-input rounded-2xl px-4 shadow-inset-soft focus-within:border-ring focus-within:bg-white focus-within:shadow-[0_8px_24px_rgba(232,86,10,0.15)] transition-all duration-300">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#E8560A"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z" /></svg>
-                <Input
-                  type="text"
-                  placeholder="Your first name"
-                  className="flex-1 bg-transparent border-none shadow-none text-[16px] font-bold text-brown placeholder:text-brown-muted/50 h-14 focus-visible:ring-0 p-0"
-                />
-              </div>
+      {/* Form Area */}
+      <div className="flex-1 px-8 pt-4 z-20 flex flex-col gap-6 relative">
+        
+        {/* Name Input */}
+        <BlurFade delay={0.4} duration={0.5}>
+          <div className="space-y-2.5">
+            <label className="text-[12px] font-bold text-white/90 uppercase tracking-widest pl-1">What should we call you?</label>
+            <div className="relative">
+              <Input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your name"
+                className="w-full h-[56px] bg-white/10 border-white/20 text-white placeholder:text-white/40 rounded-[20px] px-5 font-bold text-[16px] focus:bg-white/20 focus:border-white/40 focus:ring-0 transition-all backdrop-blur-sm"
+              />
             </div>
-          </BlurFade>
-
-          {/* Diet — shadcn RadioGroup */}
-          <BlurFade delay={0.4} duration={0.4}>
-            <div className="mb-7">
-              <Label className="text-[15px] font-semibold text-brown mb-3 block">Food preference?</Label>
-              <RadioGroup defaultValue="veg" className="grid grid-cols-2 gap-3">
-                <Label className="cursor-pointer [&:has([data-state=checked])]:border-success [&:has([data-state=checked])]:bg-success/5 [&:has([data-state=checked])]:shadow-soft flex items-center justify-center gap-2 border-[1.5px] border-line rounded-2xl py-4 transition-all duration-300 hover:border-success/40">
-                  <RadioGroupItem value="veg" className="sr-only" />
-                  <svg width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" rx="3" fill="none" stroke="#1A7A38" strokeWidth="1.5" /><circle cx="8" cy="8" r="3.5" fill="#1A7A38" /></svg>
-                  <span className="text-sm font-bold text-brown">Pure Veg</span>
-                </Label>
-                <Label className="cursor-pointer [&:has([data-state=checked])]:border-danger [&:has([data-state=checked])]:bg-danger/5 [&:has([data-state=checked])]:shadow-soft flex items-center justify-center gap-2 border-[1.5px] border-line rounded-2xl py-4 transition-all duration-300 hover:border-danger/40">
-                  <RadioGroupItem value="non-veg" className="sr-only" />
-                  <svg width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" rx="3" fill="none" stroke="#C0001A" strokeWidth="1.5" /><polygon points="8,3 13,12 3,12" fill="#C0001A" /></svg>
-                  <span className="text-sm font-bold text-brown">Non-Veg</span>
-                </Label>
-              </RadioGroup>
-            </div>
-          </BlurFade>
-
-          {/* Cravings — Badge chips with toggle */}
-          <BlurFade delay={0.5} duration={0.4}>
-            <div className="mb-4">
-              <Label className="text-[15px] font-semibold text-brown mb-3 block">Usually craving?</Label>
-              <div className="flex flex-wrap gap-3">
-                {cravings.map((c) => (
-                  <label key={c.label} className="cursor-pointer active:scale-[0.96] transition-transform duration-300">
-                    <input type="checkbox" defaultChecked={c.defaultChecked} className="peer hidden" />
-                    <Badge
-                      variant="outline"
-                      className="px-5 py-3 border-[1.5px] border-line rounded-full transition-all duration-300 peer-checked:border-brand peer-checked:bg-brand-light/80 peer-checked:shadow-soft hover:border-brand/40 gap-2 text-[14px] font-bold text-brown cursor-pointer"
-                    >
-                      <span>{c.emoji}</span>
-                      {c.label}
-                    </Badge>
-                  </label>
-                ))}
-              </div>
-            </div>
-          </BlurFade>
-
-          {/* CTA — ShimmerButton */}
-          <div className="mt-auto pt-6">
-            <BlurFade delay={0.7} duration={0.5} direction="up">
-              <ShimmerButton
-                className="w-full h-14 text-[16px] font-bold shadow-brand-glow"
-                shimmerColor="rgba(255,255,255,0.4)"
-                background="rgba(232,86,10,1)"
-                borderRadius="20px"
-                onClick={() => window.location.href = "/location"}
-              >
-                <span className="flex items-center gap-2 text-white font-bold">
-                  Let&apos;s Eat
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-                </span>
-              </ShimmerButton>
-            </BlurFade>
           </div>
-        </CardContent>
-      </Card>
+        </BlurFade>
+
+        {/* Diet Preference */}
+        <BlurFade delay={0.5} duration={0.5}>
+          <div className="space-y-3">
+            <label className="text-[12px] font-bold text-white/90 uppercase tracking-widest pl-1">Dietary Preference</label>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                onClick={() => setDiet("veg")}
+                className={`h-[56px] rounded-[20px] font-bold text-[15px] border-2 transition-all flex items-center justify-center gap-2 ${
+                  diet === "veg"
+                    ? "bg-white border-white text-brand shadow-[0_4px_16px_rgba(39,18,0,0.15)]"
+                    : "bg-white/10 border-white/20 text-white hover:bg-white/15 backdrop-blur-sm"
+                }`}
+              >
+                <div className={`w-3 h-3 rounded-sm border ${diet === "veg" ? "border-brand" : "border-white/60"} flex items-center justify-center`}>
+                  <div className={`w-1.5 h-1.5 rounded-full ${diet === "veg" ? "bg-brand" : "bg-transparent"}`} />
+                </div>
+                Veg
+              </button>
+              <button
+                onClick={() => setDiet("non-veg")}
+                className={`h-[56px] rounded-[20px] font-bold text-[15px] border-2 transition-all flex items-center justify-center gap-2 ${
+                  diet === "non-veg"
+                    ? "bg-brown border-brown text-white shadow-[0_4px_16px_rgba(39,18,0,0.25)]"
+                    : "bg-white/10 border-white/20 text-white hover:bg-white/15 backdrop-blur-sm"
+                }`}
+              >
+                <div className={`w-3 h-3 rounded-sm border ${diet === "non-veg" ? "border-white" : "border-white/60"} flex items-center justify-center`}>
+                  <div className={`w-1.5 h-1.5 rounded-full ${diet === "non-veg" ? "bg-white" : "bg-transparent"}`} />
+                </div>
+                Non-Veg
+              </button>
+            </div>
+          </div>
+        </BlurFade>
+
+        <BlurFade delay={0.6} duration={0.5}>
+           <div className="flex items-center gap-3 mt-2 pl-1 cursor-pointer group">
+              <div className="w-5 h-5 rounded border-2 border-white/40 flex items-center justify-center bg-white/10 group-hover:border-white transition-colors">
+                <svg className="w-3 h-3 text-white opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <span className="text-[12px] font-medium text-white/80">I agree to the <span className="underline decoration-white/30 underline-offset-2">Terms</span> & <span className="underline decoration-white/30 underline-offset-2">Privacy Policy</span></span>
+           </div>
+        </BlurFade>
+      </div>
+
+      {/* Animated Farm Vector Landscape (Bottom) */}
+      <div className="absolute bottom-0 inset-x-0 h-64 z-10 pointer-events-none overflow-hidden">
+        {/* Sun / Clouds */}
+        <div className="absolute top-4 right-10 w-12 h-12 rounded-full bg-white/20 blur-sm" />
+        <div className="absolute top-8 left-1/4 w-20 h-6 rounded-full bg-white/10 animate-marquee-left opacity-60" style={{ animationDuration: '40s' }} />
+        <div className="absolute top-12 left-3/4 w-16 h-5 rounded-full bg-white/10 animate-marquee-right opacity-40" style={{ animationDuration: '30s' }} />
+
+        {/* Distant Hills */}
+        <svg viewBox="0 0 400 150" className="absolute bottom-0 w-[200%] -left-[50%] h-[120px] text-white/5" preserveAspectRatio="none">
+           <path d="M0,150 L0,50 Q100,0 200,60 T400,40 L400,150 Z" fill="currentColor" />
+        </svg>
+
+        {/* Middle Ground Hills */}
+        <svg viewBox="0 0 400 150" className="absolute bottom-0 w-[150%] -left-[10%] h-[90px] text-white/10" preserveAspectRatio="none">
+           <path d="M0,150 L0,80 Q150,20 250,70 T400,50 L400,150 Z" fill="currentColor" />
+        </svg>
+
+        {/* Foreground Vectors (Windmill, Tractor, Plants) */}
+        <div className="absolute bottom-0 w-full h-[60px] flex items-end justify-between px-6 opacity-90 pb-2">
+            {/* Wheat 1 */}
+            <svg width="24" height="40" viewBox="0 0 24 40" fill="none" className="origin-bottom animate-[pulse-ring_3s_infinite_alternate]">
+              <path d="M12 40 Q12 20 8 0 M8 10 L14 5 M10 20 L16 15 M11 30 L17 25" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+            {/* Windmill */}
+            <div className="relative w-12 h-20 flex flex-col items-center justify-end -mb-2">
+              <div className="absolute top-0 w-10 h-10 animate-[spin_10s_linear_infinite]">
+                 <div className="absolute top-1/2 left-0 w-full h-1 bg-white/30 rounded-full -translate-y-1/2" />
+                 <div className="absolute left-1/2 top-0 h-full w-1 bg-white/30 rounded-full -translate-x-1/2" />
+              </div>
+              <div className="w-1.5 h-14 bg-white/20 rounded-t-sm" />
+            </div>
+            {/* Tractor */}
+            <svg width="40" height="28" viewBox="0 0 40 28" fill="none" className="mb-1 opacity-60">
+              <path d="M8 24 A 6 6 0 1 0 8 12 A 6 6 0 1 0 8 24 Z" fill="currentColor" />
+              <path d="M30 24 A 4 4 0 1 0 30 16 A 4 4 0 1 0 30 24 Z" fill="currentColor" />
+              <rect x="12" y="8" width="16" height="12" rx="2" fill="currentColor" />
+              <rect x="20" y="2" width="6" height="6" fill="currentColor" />
+              <path d="M14 14 L34 14 L34 18" stroke="currentColor" strokeWidth="2" />
+            </svg>
+            {/* Wheat 2 */}
+            <svg width="20" height="30" viewBox="0 0 24 40" fill="none" className="origin-bottom animate-[pulse-ring_4s_infinite_alternate-reverse]">
+              <path d="M12 40 Q12 20 16 0 M16 10 L10 5 M14 20 L8 15 M13 30 L7 25" stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+        </div>
+      </div>
+
+      {/* CTA Button */}
+      <div className="absolute bottom-0 inset-x-0 p-8 z-30">
+        <BlurFade delay={0.8} duration={0.5} direction="up">
+          <ShimmerButton
+            className="w-full h-14 text-[16px] font-bold shadow-[0_12px_32px_rgba(39,18,0,0.3)] border border-white/20"
+            shimmerColor="rgba(255,255,255,0.4)"
+            background="rgba(255,255,255,1)"
+            borderRadius="20px"
+            onClick={() => router.push("/location")}
+          >
+            <span className="flex items-center gap-2 text-brand font-bold">
+              Let&apos;s Go
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+          </ShimmerButton>
+        </BlurFade>
+        
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/30 rounded-full" />
+      </div>
     </PhoneShell>
   );
 }

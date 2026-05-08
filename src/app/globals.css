@@ -222,6 +222,48 @@ body::before {
   to { stroke-dashoffset: 0; }
 }
 
+@keyframes fall-in {
+  0% { transform: translateY(-300px); opacity: 0; }
+  60% { transform: translateY(20px); opacity: 1; }
+  80% { transform: translateY(-10px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes text-reveal {
+  0% { opacity: 0; transform: translateY(10px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes cheese-slide {
+  0% { transform: translateX(100px) scale(1.2) rotate(10deg); opacity: 0; }
+  100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes top-half-shift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-60px); }
+}
+
+@keyframes bottom-half-shift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(60px); }
+}
+
+@keyframes tagline-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
 /* Animation utility classes */
 .animate-fade-in-up {
   animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -243,6 +285,14 @@ body::before {
 
 .animate-slide-loader {
   animation: slide-loader 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-marquee-left {
+  animation: marquee-left 25s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 30s linear infinite;
 }
 
 /* Scroll snap */
