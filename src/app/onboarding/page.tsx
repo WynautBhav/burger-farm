@@ -28,18 +28,14 @@ export default function OnboardingPage() {
       {/* Top Header */}
       <div className="pt-16 pb-8 flex flex-col items-center z-10 bg-white relative">
         <BlurFade delay={0.1} duration={0.5}>
-          <div className="w-16 h-16 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center mb-6">
-            <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
-              <rect x="12" y="26" width="24" height="8" rx="4" fill="#E8560A" />
-              <rect x="10" y="22" width="28" height="5" rx="2.5" fill="#C94208" opacity="0.6" />
-              <rect x="13" y="19" width="22" height="4" rx="2" fill="#E8560A" opacity="0.85" />
-            </svg>
+          <div className="flex items-center justify-center mb-6">
+            <img src="/logo.png" alt="Burger Farm" className="w-24 h-24 object-contain" />
           </div>
         </BlurFade>
 
-        <BlurFade delay={0.2} duration={0.5}>
-          <h1 className="font-display text-[26px] font-black text-brown mb-2 tracking-tight">Welcome to Burger Farm</h1>
-          <p className="text-[14px] font-medium text-brown-muted">Farm-fresh cravings, delivered fast.</p>
+        <BlurFade delay={0.2} duration={0.5} className="text-center px-4">
+          <h1 className="font-display text-[32px] leading-tight font-black text-brown mb-3 tracking-tight">Welcome to the official Burger Farm app</h1>
+          <p className="text-[16px] font-medium text-brown-muted">Farm-fresh cravings, delivered fast.</p>
         </BlurFade>
       </div>
 
