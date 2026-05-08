@@ -20,7 +20,9 @@ export default function OutletPage() {
   const [selectedStore, setSelectedStore] = useState<number | null>(5);
 
   return (
-    <PhoneShell bg="bg-white">
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-8 w-full max-w-5xl mx-auto">
+      {/* Left: Current Outlet Selection */}
+      <PhoneShell bg="bg-white">
       {/* Top Header */}
       <header className="pt-12 pb-4 px-4 bg-white z-20 flex flex-col gap-4 border-b border-line/30">
         <div className="flex items-center justify-between">
@@ -150,5 +152,19 @@ export default function OutletPage() {
         </div>
       </div>
     </PhoneShell>
+
+    {/* Right: New Video Screen */}
+    <PhoneShell bg="bg-black" className="relative overflow-hidden shadow-2xl">
+      <video 
+         className="absolute inset-0 w-full h-full object-cover" 
+         autoPlay 
+         muted 
+         loop 
+         playsInline
+      >
+         <source src="/store.mp4" type="video/mp4" />
+      </video>
+    </PhoneShell>
+    </div>
   );
 }

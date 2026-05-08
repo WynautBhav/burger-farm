@@ -24,7 +24,9 @@ export default function OnboardingPage() {
   const router = useRouter();
 
   return (
-    <PhoneShell bg="bg-white">
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-8 w-full max-w-5xl mx-auto">
+      {/* Left: Current Onboarding */}
+      <PhoneShell bg="bg-white">
       {/* Top Header */}
       <div className="pt-8 pb-8 flex flex-col items-center z-10 bg-white relative">
         <BlurFade delay={0.1} duration={0.5}>
@@ -118,5 +120,19 @@ export default function OnboardingPage() {
         <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-brown/10 rounded-full" />
       </div>
     </PhoneShell>
+
+    {/* Right: New Video Screen */}
+    <PhoneShell bg="bg-black" className="relative overflow-hidden shadow-2xl">
+      <video 
+         className="absolute inset-0 w-full h-full object-cover" 
+         autoPlay 
+         muted 
+         loop 
+         playsInline
+      >
+         <source src="/onboarding.mp4" type="video/mp4" />
+      </video>
+    </PhoneShell>
+    </div>
   );
 }
